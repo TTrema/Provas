@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+import os, sys
+from PIL import Image
+
+os.chdir ("/home/student-01/images/")
+
+for infile in os.listdir():
+
+    outfile = os.path.splitext(infile)[0]
+    try:
+        with Image.open(infile).convert('RGB') as im:
+            im.thumbnail((128,128))
+            im.rotate(270).save("/opt/icons/" + outfile, "JPEG")
+    except OSError:
+        print(OSError)
